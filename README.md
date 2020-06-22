@@ -16,7 +16,8 @@ vue add vue-next
 //
 ```
 ---
-## wabpack 환경변수
+## wabpack
+### 환경변수
 ```
 .env                # loaded in all cases
 .env.local          # loaded in all cases, ignored by git
@@ -52,6 +53,11 @@ vue add vue-next
   }
   ...
 ```
+
+ ### plugin
+**html-webpack-plugin** : index.html 설정 플러그인<br>
+**uglifyjs-webpack-plugin** : 빌드시 파일 용량 줄여주는 도구
+
 
 참고자료: https://cli.vuejs.org/guide/mode-and-env.html#environment-variables
 
