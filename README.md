@@ -227,9 +227,11 @@ export default {
   }
 }
 ```
+
 ## 참고자료
 - https://cli.vuejs.org/guide/mode-and-env.html#environment-variables
 - https://github.com/vuejs/composition-api
+- https://marc.dev/blog
 
 
 ## TODO
