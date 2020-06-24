@@ -169,7 +169,7 @@ export default {
 ```
 <br>
 
-### CompositionAPI
+> ### CompositionAPI
 CompositionAPI가 등장한 배경은 아래 이미지와 같이 규모가있는 컨포넌트 생성시, 상태 변수, 변수들의 메소드 바인딩, methods 선언, lifycycle hook 선언등 혼재되어 있는 구조가 생성되었지만 
 구조의 가독성과 논리 보존하기 위한 방향으로 변화했다고함.
 
@@ -177,14 +177,14 @@ CompositionAPI가 등장한 배경은 아래 이미지와 같이 규모가있는
 
 #### 계산된 속성 : computed
 기존에 옵션으로 있었던 computed, mounted 등이 이젠 선호하여 사용하도록 변경되었다.
-```js
-// HTML
+```html
 <template>
-    <button @click="increment">countText: {{ countText }}</button>
+    <button @click="increment">
+      countText: {{ countText }}
+    </button>
 </template>
-```
-```js
-// vue
+
+<script>
 import { ref, computed } from 'vue'
 
 export default {
@@ -200,10 +200,37 @@ export default {
     }
   }
 }
+</script>
 ```
 
+#### 실행 : watchEffect
+`watchEffect`는 함수를 즉시 실행하고, 사용한 모든 반응 상태 속성을 종속성으로 추가하여 추적합니다.
+```js
+import { ref, watchEffect } from 'vue'
+
+export default {
+  name: 'About',
+  setup() {
+    const count = ref(0)
+    setInterval(() => {
+      count.value++
+    }, 1000)
+    const increment = () => {
+      watchEffect(() => {
+        document.body.innerHTML = `Change HTML${count.value}`
+      })
+    }
+    return {
+      count,
+      increment
+    }
+  }
+}
+```
 ## 참고자료
 - https://cli.vuejs.org/guide/mode-and-env.html#environment-variables
+- https://github.com/vuejs/composition-api
+
 
 ## TODO
 - env(환경변수) 설정시 BASE_URL은 변경이 불가능하다. 왜그런지 확인
