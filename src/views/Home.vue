@@ -1,28 +1,54 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld :msg="msg"/>
-    <v-btn>test</v-btn>
-  </div>
+  <h1>{{ title }}</h1>
+  <button @click="increment">ref: {{ count }}</button><br />
+  <button @click="increment">
+    Count is: {{ state.text }}, double is: {{ state.double }}
+  </button><br />
+  {{ refTest.count }} / {{ reactiveTest.count }}
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import { ref, reactive, computed, watch } from 'vue'
 
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
-  },
-  data () {
-    return {
-      msg: 'test'
+  setup() {
+    const title = ref('HOME')
+    const count = ref(0)
+    const state = reactive({
+      text: `countText ${count.value}`,
+      double: computed(() => count.value * 2)
+    })
+    const refTest = ref({
+      count: 0
+    })
+    const reactiveTest = reactive({
+      count: 0
+    })
+    function increment() {
+      title.value = 'HOME' + count.value
+      count.value++
+      refTest.value.count++
+      reactiveTest.count++
+      state.text = `countText ${count.value}`
     }
-  },
-  mounted () {
-    this.msg = process.env.VUE_APP_BASE_URL
-    console.log(process.env)
+    // watch((first, second) => {
+    //   console.log(first, second)
+    // })
+    watch(count, (first, second) => {
+      console.log(first, second)
+    })
+    watch(title, (first, second) => {
+      console.log(first, second)
+    })
+    return {
+      title,
+      count,
+      state,
+      refTest,
+      reactiveTest,
+      increment
+    }
   }
 }
 </script>

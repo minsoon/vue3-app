@@ -54,7 +54,10 @@ vue add vue-next
   ...
 ```
 
+---
+## vue.config
  ### plugin
+ 
 **html-webpack-plugin** : index.html 설정 플러그인<br>
 **uglifyjs-webpack-plugin** : 빌드시 파일 용량 줄여주는 도구
 
@@ -63,11 +66,19 @@ vue add vue-next
 
 ---
 ## vue3 릴리즈 내역
- vendors.js 용량차이가 있음.(이미지)
- 
- main.js 마운트 형태가 다름.(이미지)
+속도 개선, 파일 용량 개선, Typescript 고도화
+ - vendors.js 용량차이가 있음.
+ - main.js 마운트 형태가 다름.
+ ```
+import { createApp } from 'vue';
+import App from './App.vue'
+import router from './router'
 
- 템플릿을 테그로 안감싸도댐.
+createApp(App).use(router).mount('#app')
+
+ ```
+
+ - 템플릿을 테그로 안감싸도댐.
 ```
 <template>
     <h1></h1>
@@ -78,8 +89,65 @@ vue add vue-next
 </template>
 ```
 
+- Lifecycle 변화
+
+### Lifecycle 변화
+vue2는 data, method와 같은 위치에 선언하도록 되어있었으나 <br>
+vue3에선 setup 내부에서 선언하도록 되었음.(기존에 사용되던 lifecycle hook은 대부분 유지)
+
+### 속성 사용의 변화
+기존에는 옵션으로 있었던 computed, mounted 등이 이젠 선호하여 사용하도록 변경됨<br>
+사용하는 것만 import하여 사용하도록 하는 철학이라고함..<br>
+개인적으로 불편..(글로벌로 받아올 방법 찾아볼까함..)
+
+```
+import { onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted, onActivated, onDeactivated, onErrorCaptured } from 'vue'
+    
+    export default {
+      setup() {
+        onBeforeMount(() => {
+          // ... 
+        })
+        onMounted(() => {
+          // ... 
+        })
+        onBeforeUpdate(() => {
+          // ... 
+        })
+        onUpdated(() => {
+          // ... 
+        })
+        onBeforeUnmount(() => {
+          // ... 
+        })
+        onUnmounted(() => {
+          // ... 
+        })
+        onActivated(() => {
+          // ... 
+        })
+        onDeactivated(() => {
+          // ... 
+        })
+        onErrorCaptured(() => {
+          // ... 
+        })
+      }
+    }
+
+```
+- data, computed, methods 
+
+### 속성 사용의 변화
+기존에는 옵션으로 있었던 computed, mounted 등이 이젠 선호하여 사용하도록 변경됨
+
+### CompositionAPI
+CompositionAPI가 등장한 배경은 아래 이미지와 같이 규모가있는 컨포넌트 생성시, 상태 변수, 변수들의 메소드 바인딩, methods 선언, lifycycle hook 선언등 혼재되어 있는 구조가 생성되었지만 
+구조의 가독성과 논리 보존하기 위한 방향으로 변화했다고함.
+<img src="https://media.vlpt.us/images/bluestragglr/post/04f6bd1b-cf8b-40a2-97c8-f2ea41741225/Untitled%201.png">
+
 ## TODO
-- BASE_URL은 변경이 불가능하다. 왜그런지 확인
+- env(환경변수) 설정시 BASE_URL은 변경이 불가능하다. 왜그런지 확인
 - vuetify, axios, lodash 등 적용할 패키지 모듈화
 
 
