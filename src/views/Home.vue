@@ -4,7 +4,8 @@
   <button @click="increment">
     Count is: {{ state.text }}, double is: {{ state.double }}
   </button><br />
-  {{ refTest.count }} / {{ reactiveTest.count }}
+  {{ refTest.count }} / {{ reactiveTest.count }}<br />
+  {{ testcomputed }}
 </template>
 
 <script>
@@ -15,6 +16,8 @@ export default {
   setup() {
     const title = ref('HOME')
     const count = ref(0)
+    const testCount = ref(0)
+    const testcomputed = computed(() => testCount.value * 2)
     const state = reactive({
       text: `countText ${count.value}`,
       double: computed(() => count.value * 2)
@@ -25,7 +28,8 @@ export default {
     const reactiveTest = reactive({
       count: 0
     })
-    function increment() {
+    const increment = () => {
+      testCount.value++
       title.value = 'HOME' + count.value
       count.value++
       refTest.value.count++
@@ -47,7 +51,8 @@ export default {
       state,
       refTest,
       reactiveTest,
-      increment
+      increment,
+      testcomputed
     }
   }
 }
