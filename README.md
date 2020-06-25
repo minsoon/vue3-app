@@ -106,6 +106,10 @@ vue3에선 setup 내부에서 선언하도록 되었다. (기존에 사용되던
 `errorCaptured` -> `onErrorCaptured`<br>
 <br>
 
+새로등록된 Hooke으로 디버깅용에 사용한다고한다.
+`onRenderTracked`<br>
+`onRenderTriggered`<br>
+
 > ### 속성 사용의 변화
 기존에는 옵션으로 있었던 computed, mounted 등이 이젠 선호하여 사용하도록 변경되었다.<br>
 
@@ -203,8 +207,19 @@ export default {
 </script>
 ```
 
-#### 실행 : watchEffect
-`watchEffect`는 함수를 즉시 실행하고, 사용한 모든 반응 상태 속성을 종속성으로 추가하여 추적합니다.
+#### 감시자 : watchEffect
+`watchEffect`는 반응형 상태에 따라 부수효과를 적용하고 자동으로 다시 적용시키는 API이다.
+
+또한 실행 후에도 사용한 모든 반응 상태 속성을 종속성으로 추가하여 추적한다.
+
+중지 시점은 마운트가 해제되면 자동으로 중지됩다고한다.
+
+- 비동기로 개발 가능.
+- `Hooks` 에서 적용 가능
+- `onInvalidate`를 활용하여 무효화.
+- `flush` 값에 따라 감시 시점 변경
+- `onTrack`, `onTrigger` 감시자 디버깅용
+
 ```js
 import { ref, watchEffect } from 'vue'
 
@@ -228,10 +243,33 @@ export default {
 }
 ```
 
+> 참고: watchEffect 는 2.x watch 옵션과 유사하지만 감시된 데이터 소스와 부수효과 콜백을 분리할 필요가 없습니다. Composition API는 2.x 옵션과 정확히 동일한 동작을 하는 watch 기능을 제공합니다.
+ 
+
+#### 감시자 : watch
+Vue2와 동일한 기능이며 문법만 달라졌다.
+```js
+import { ref, watch } from 'vue'
+
+export default {
+  name: 'About',
+  setup() {
+    const count = ref(0)
+    watch(count, () => {
+      console.log(count.value)
+    })
+    return {
+      count
+    }
+  }
+}
+```
+
 ## 참고자료
 - https://cli.vuejs.org/guide/mode-and-env.html#environment-variables
 - https://github.com/vuejs/composition-api
 - https://marc.dev/blog
+- https://vue-composition-api-rfc.netlify.app/api.html#setup
 
 
 ## TODO

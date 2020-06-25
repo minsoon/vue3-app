@@ -14,10 +14,13 @@ export default {
     setInterval(() => {
       count.value++
     }, 1000)
+    watchEffect(() => {
+      count.value++
+    })
     const increment = () => {
-      watchEffect(() => {
-        document.body.innerHTML = `Change HTML${count.value}`
-      })
+      // watchEffect(() => {
+      //   document.body.innerHTML = `Change HTML${count.value}`
+      // })
     }
     return {
       count,
