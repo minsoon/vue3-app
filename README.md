@@ -137,7 +137,7 @@ export default {
 }
 ```
 
-> ### reactive(), ref(), toRefs(), isRef()
+> ### reactive(), ref(), toRef(), toRefs(), isRef()
 `reactive()`, `ref()`는 반응성이며 변경이 가능한 객체이다.
 
 `reactive()`는 2.x의 현재 `Vue.observable()` API와 동일하며 RxJS Observables과 혼동되지 않도록 이름을 변경했다고한다.
@@ -275,5 +275,6 @@ export default {
 ## TODO
 - env(환경변수) 설정시 BASE_URL은 변경이 불가능하다. 왜그런지 확인
 - vuetify, axios, lodash 등 적용할 패키지 모듈화
+  - `Vuetify`는 아직 Vue3에 대한 대응 준비중. 참고: https://www.notion.so/Coding-Guidelines-86c96a7da947421bb88515a966e71df0
 
 
