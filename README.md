@@ -1,8 +1,8 @@
 
-<center>
-<img src="https://camo.githubusercontent.com/728ce9f78c3139e76fa69925ad7cc502e32795d2/68747470733a2f2f7675656a732e6f72672f696d616765732f6c6f676f2e706e67" style="width:100px"><br>
-<div style="font-size:26px;font-weight:bold;">vue3 도입 가이드 문서 🤖</div>
-</center>
+
+<p align="center"><a href="https://vuejs.org" target="_blank" rel="noopener noreferrer"><img width="100" src="https://vuejs.org/images/logo.png" alt="Vue logo"></a></p>
+
+<h2 align="center">vue3 도입 가이드 문서 🤖</h2>
 
 ## vue3 버전 업데이트
 ```shell
