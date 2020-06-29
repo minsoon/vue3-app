@@ -2,7 +2,9 @@
 
 <p align="center"><a href="https://vuejs.org" target="_blank" rel="noopener noreferrer"><img width="100" src="https://vuejs.org/images/logo.png" alt="Vue logo"></a></p>
 
-<h2 align="center">vue3 도입 가이드 문서 🤖</h2>
+<h2 align="center"> 🤖 vue3 도입 가이드 문서 🤖</h2>
+<br>
+<br>
 
 ## vue3 버전 업데이트
 ```shell
