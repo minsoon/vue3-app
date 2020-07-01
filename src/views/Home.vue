@@ -1,10 +1,10 @@
 <template>
-  ChatRoom
+  Home
 </template>
 
 <script>
 export default {
-  name: 'ChatRoom',
+  name: 'Home',
   setup() {
   }
 }

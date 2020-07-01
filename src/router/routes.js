@@ -1,8 +1,8 @@
 const routes = [
   {
-    path: '/chat/room',
+    path: '/',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "ChatRoom" */ '../views/chat/Room.vue'),
+    component: () => import(/* webpackChunkName: "Home" */ '../views/Home.vue'),
     meta: {
       requireAuth: true
     }
@@ -12,9 +12,9 @@ const routes = [
 if (process.env.NODE_ENV !== 'production') {
     routes.push(
         {
-            name: 'DevSdk',
-            path: '/devSdk',
-            component: import(/* webpackChunkName: "DevSdk" */ '../views/devBox/DevSdk.vue'),
+            name: 'DevPage',
+            path: '/devPage',
+            component: import(/* webpackChunkName: "DevPage" */ '../views/devBox/DevPage.vue'),
             meta: {
                 requireAuth: false
             }
